@@ -1,11 +1,17 @@
 import importlib.resources
 import json
+import os
 
 import requests
+from dotenv import load_dotenv
 
-API_URL = "http://localhost:3000"
-API_USER = "demo- demo.demo"
-API_PASS = "demo"
+load_dotenv()
+
+# you can define these in .env file
+API_URL = os.getenv("API_URL") or "http://localhost:3000"
+API_USER = os.getenv("API_USER") or "demo- demo.demo"
+API_PASS = os.getenv("API_PASS") or "demo"
+
 OFFSET = 65535
 
 
@@ -17,9 +23,9 @@ class Planka:
     """
     def __init__(
         self,
-        url: str,
-        username: str,
-        password: str,
+        url: str = API_URL,
+        username: str = API_USER,
+        password: str = API_PASS,
         templates=None,
         access_token=None
     ):
